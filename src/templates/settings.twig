@@ -1,0 +1,20 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * @author    Venveo
+ * @copyright Copyright (c) 2018 Venveo
+ * @link      https://venveo.com
+ * @package   ViewCount
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{{ forms.lightswitchField({
+    label: 'Ignore logged in users',
+    instructions: 'If enabled, only views by guests will be recorded',
+    id: 'ignoreLoggedInUsers',
+    name: 'ignoreLoggedInUsers',
+    value: settings['ignoreLoggedInUsers']})
+}}
