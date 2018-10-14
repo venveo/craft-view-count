@@ -1,6 +1,38 @@
 # View Count Plugin for Craft CMS 3.x
 
-Keep track of view counts over a period of time to show popular entries.
+Keep track of view counts over a period of time to show popular elements. Right now, it lumps views into aggregates by day. 
+
+## Usage
+After installing and enabling, all you need to do is register a view count in the template:
+```twig
+{% do craft.viewcount.increment(entry.id) %}
+```
+
+Of course, it doesn't need to be an entry id, it could be any element ID, such as a category.
+
+To start using views in your query, all you need to do is use the "views" keyword in your `order` parameter. For example:
+
+```twig
+{% set blogPosts = craft.entries({
+    section: 'blog',
+    order: 'views DESC',
+    limit: 10
+}) %}
+```
+
+This will sort based on the number of views in the past 24 hours.
+
+## Settings
+Right now, there is a single setting to toggle whether view counts should be recorded to logged in users.
+
+## Developer Events
+The following events are emitted to allow for programmtic customization: 
+#### EVENT_REGISTER_VIEW
+You can listen for this event on the `venveo\viewcount\services\ViewCount` class to control whether a view count should be registered.
+The event class, `ViewCountEvent`, contains:
+- `$elementId` - The element ID being registered as a view
+- `$siteId` - The id of the site the element resides on
+- `$shouldSkip` - a boolean for whether the view should be skipped
 
 ## Requirements
 
@@ -19,23 +51,5 @@ To install the plugin, follow these instructions.
         composer require venveo/popular-entries
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Popular Entries.
-
-## Popular Entries Overview
-
--Insert text here-
-
-## Configuring Popular Entries
-
--Insert text here-
-
-## Using Popular Entries
-
--Insert text here-
-
-## Popular Entries Roadmap
-
-Some things to do, and ideas for potential features:
-
-* Release it
 
 Brought to you by [Venveo](https://venveo.com)
