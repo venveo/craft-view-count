@@ -11,6 +11,9 @@
 namespace venveo\viewcount\services;
 
 use craft\base\Component;
+use craft\elements\db\ElementQueryInterface;
+use craft\elements\db\EntryQuery;
+use craft\elements\Entry;
 use venveo\viewcount\events\ViewCountEvent;
 use venveo\viewcount\records\ElementCount as ElementCountRecord;
 use venveo\viewcount\ViewCount as Plugin;
@@ -79,5 +82,30 @@ class ViewCount extends Component
         }
 
         return true;
+    }
+
+    /**
+     * Get an Entry query with recent view count joined
+     * @param string $interval
+     * @return EntryQuery|ElementQueryInterface
+     * @throws \Exception
+     */
+    public function queryRecentEntries($interval = 'P2W') {
+        // get timestamp one interval from current date
+        $timestamp = (new \DateTime())->sub(new \DateInterval($interval))->format('Y-m-d 00:00:00');
+
+        // get raw SQL string for subquery with recent view counts within date range
+        $subQuery = ElementCountRecord::find()
+            ->where("day >= :timestamp", [':timestamp' => $timestamp])
+            ->groupBy("elementId")
+            ->select("elementId, sum(count) AS recentViews")
+            ->createCommand()
+            ->getRawSql();
+
+        // join recent view counts to basic entry query and order by recent views
+        $entryQuery = Entry::find()
+            ->leftJoin("({$subQuery}) AS viewsSubquery", "viewsSubquery.elementId = [[entries.id]]")
+            ->orderBy('recentViews DESC');
+        return $entryQuery;
     }
 }

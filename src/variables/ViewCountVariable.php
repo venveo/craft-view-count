@@ -10,4 +10,8 @@ class ViewCountVariable {
         $siteId = \Craft::$app->getSites()->getCurrentSite()->id;
         Plugin::$plugin->service->increment($elementId, $siteId);
     }
+
+    public function recentEntries($interval = 'P2W') {
+        return Plugin::$plugin->service->queryRecentEntries($interval);
+    }
 }
