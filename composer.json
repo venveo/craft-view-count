@@ -2,7 +2,7 @@
     "name": "venveo/view-count",
     "description": "Keep track of view counts over a period of time to show popular entries.",
     "type": "craft-plugin",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "keywords": [
         "craft",
         "cms",
@@ -11,18 +11,18 @@
         "popular entries"
     ],
     "support": {
-        "docs": "https://github.com/venveo/popular-entries/blob/master/README.md",
-        "issues": "https://github.com/venveo/popular-entries/issues"
+        "docs": "https://github.com/venveo/craft-view-count/blob/master/README.md",
+        "issues": "hhttps://github.com/venveo/craft-view-count/issues"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Venveo",
-            "homepage": "https://venveo.com"
+            "homepage": "https://www.venveo.com"
         }
     ],
     "require": {
-        "craftcms/cms": "^3.0.0-RC1"
+        "craftcms/cms": "^3.0.0"
     },
     "autoload": {
         "psr-4": {
