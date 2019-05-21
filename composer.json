@@ -2,7 +2,7 @@
     "name": "venveo/view-count",
     "description": "Keep track of view counts over a period of time to show popular entries.",
     "type": "craft-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "keywords": [
         "craft",
         "cms",
