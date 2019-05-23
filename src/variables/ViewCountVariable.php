@@ -11,7 +11,7 @@ class ViewCountVariable {
         Plugin::$plugin->service->increment($elementId, $siteId);
     }
 
-    public function recentEntries($interval = 'P2W') {
-        return Plugin::$plugin->service->queryRecentEntries($interval);
+    public function recentEntries() {
+        return Plugin::$plugin->service->queryRecentEntries();
     }
 }

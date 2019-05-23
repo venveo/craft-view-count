@@ -50,6 +50,8 @@ class ViewCount extends Plugin
      */
     public $schemaVersion = '1.0.0';
 
+    public $hasCpSettings = true;
+
     // Public Methods
     // =========================================================================
 

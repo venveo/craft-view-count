@@ -20,10 +20,16 @@ use craft\base\Model;
 class Settings extends Model
 {
 
-    public $ignoreLoggedInUsers;
+    public $ignoreLoggedInUsers = false;
+    public $timeFrameInDays = 5;
 
     // Public Methods
     // =========================================================================
+
+    public function __construct(array $config = [])
+    {
+        parent::__construct($config);
+    }
 
     /**
      * Returns the validation rules for attributes.
@@ -39,7 +45,7 @@ class Settings extends Model
     {
         return [
             ['ignoreLoggedInUsers', 'boolean'],
-            ['ignoreLoggedInUsers', 'default', false]
+            ['timeFrameInDays', 'integer']
         ];
     }
 }

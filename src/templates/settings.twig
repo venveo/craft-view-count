@@ -18,3 +18,11 @@
     name: 'ignoreLoggedInUsers',
     value: settings['ignoreLoggedInUsers']})
 }}
+
+{{ forms.textField({
+    label: 'Time frame for recent entries',
+    instructions: 'The number of days before today to include in recently popular entries',
+    id: 'timeFrameInDays',
+    name: 'timeFrameInDays',
+    value: settings['timeFrameInDays']})
+}}

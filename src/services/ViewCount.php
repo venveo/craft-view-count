@@ -90,7 +90,12 @@ class ViewCount extends Component
      * @return EntryQuery|ElementQueryInterface
      * @throws \Exception
      */
-    public function queryRecentEntries($interval = 'P2W') {
+    public function queryRecentEntries($interval = null) {
+        $setting = Plugin::$plugin->getSettings();
+        if (!$interval) {
+            $interval = "P{$setting->timeFrameInDays}D";
+        }
+
         // get timestamp one interval from current date
         $timestamp = (new \DateTime())->sub(new \DateInterval($interval))->format('Y-m-d 00:00:00');
 
